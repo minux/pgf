@@ -1,0 +1,7 @@
+fig2pgf converts a xfig image into pgf code (currently pgf 0.65).
+
+Usage: fig2pgf file1.fig file2.pgf
+
+Notice: The pgf backend is currently quite limited, only lines
+(polygons, boxes etc.) and text is supported. Parsing is complete,
+so missing features can be implemented in PGFWriter.cpp.
