@@ -35,8 +35,8 @@ struct FIGEllipse : public FIGLineObject
    /// Read the object
    void read(FIGLexer& in,FIGFile& file);
 
-   /// Get the maximum y coordinate
-   double getMaxY() const;
+   /// Get the bounding box
+   Bounds getBounds() const;
 };
 //---------------------------------------------------------------------------
 #endif

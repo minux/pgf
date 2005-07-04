@@ -20,6 +20,7 @@
 #include "FIGBackend.hpp"
 #include "FIGObject.hpp"
 #include <string>
+#include <cstdio>
 //---------------------------------------------------------------------------
 class FIGFile;
 //---------------------------------------------------------------------------
@@ -27,11 +28,11 @@ class PGFWriter : public FIGBackend
 {
    private:
    /// The file
-   void* handle;
+   std::FILE* handle;
    /// The complete fig
    const FIGFile* fig;
-   /// Maximum y
-   double maxy;
+   /// Bounding box
+   FIGObject::Bounds bounds;
    /// Scale factors
    double scalex,scaley;
 

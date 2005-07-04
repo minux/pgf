@@ -27,7 +27,7 @@ struct FIGLineObject : public FIGObject
    int fillcolor;
    int penstyle;
    int areafill;
-   int stylevalue;
+   double stylevalue;
 
    protected:
    /// Read the default attributes

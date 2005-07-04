@@ -39,9 +39,15 @@ void FIGEllipse::read(FIGLexer& in,FIGFile& file)
    in.endLine();
 }
 //---------------------------------------------------------------------------
-double FIGEllipse::getMaxY() const
-   // Return the maximum y coordinate
+FIGObject::Bounds FIGEllipse::getBounds() const
+   // Get the bounding box
 {
-   return center.y+radius.y;
+   Bounds b;
+   b.combine(center);
+   IntPoint p=center; p.x+=radius.x; p.y+=radius.y;
+   b.combine(p);
+   p=center; p.x-=radius.x; p.y-=radius.y;
+   b.combine(p);
+   return b;
 }
 //---------------------------------------------------------------------------

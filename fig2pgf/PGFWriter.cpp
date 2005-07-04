@@ -33,14 +33,14 @@ PGFWriter::~PGFWriter()
    // Destructor
 {
    if (handle)
-      fclose(static_cast<FILE*>(handle));
+      fclose(handle);
 }
 //---------------------------------------------------------------------------
 bool PGFWriter::create(const string& name)
    // Open
 {
    if (handle)
-      fclose(static_cast<FILE*>(handle));
+      fclose(handle);
    handle=fopen(name.c_str(),"wt");
    return handle;
 }
@@ -49,18 +49,17 @@ void PGFWriter::process(const FIGFile& file)
    // Process the file
 {
    fig=&file;
-   // Determine the maximum of y
-   if (file.getObjects()) {
-      maxy=file.getObjects()->getMaxY();
-      for (const FIGObject* iter=file.getObjects()->next;iter;iter=iter->next) {
-	 double m=iter->getMaxY();
-	 if (m>maxy)
-	    maxy=m;
-      }
-   } else maxy=0;
    // Scale to the specified size
    scalex=0.393700787/static_cast<double>(file.getResolution());
    scaley=scalex;
+   // Determine the bounding box
+   bounds=FIGObject::Bounds();
+   for (const FIGObject* iter=file.getObjects();iter;iter=iter->next)
+      bounds.combine(iter->getBounds());
+   // Output the expected bounding box
+   fprintf(handle,"%% bb {%gmm}{%gmm}\n",
+      (bounds.lowerRight.x-bounds.upperLeft.x)*scalex*10.0,
+      (bounds.lowerRight.y-bounds.upperLeft.y)*scaley*10.0);
 
    // Process the data
    FIGBackend::process(file);
@@ -94,13 +93,13 @@ static string escapeLatex(const string& str)
 void PGFWriter::write(const std::string& str)
    // Write some text
 {
-   fprintf(static_cast<FILE*>(handle),"%s",str.c_str());
+   fprintf(handle,"%s",str.c_str());
 }
 //---------------------------------------------------------------------------
 void PGFWriter::write(const FIGObject::FloatPoint& point)
    // Write a point
 {
-   fprintf(static_cast<FILE*>(handle),"\\pgfxy(%g,%g)",point.x*scalex,(maxy-point.y)*scaley);
+   fprintf(handle,"\\pgfxy(%g,%g)",(point.x-bounds.upperLeft.x)*scalex,(bounds.lowerRight.y-point.y)*scaley);
 }
 //---------------------------------------------------------------------------
 void PGFWriter::write(const FIGObject::IntPoint& point)
@@ -113,7 +112,7 @@ void PGFWriter::write(const FIGObject::IntPoint& point)
 void PGFWriter::writeVect(const FIGObject::FloatPoint& point)
    // Write a vector
 {
-   fprintf(static_cast<FILE*>(handle),"\\pgfxy(%g,%g)",point.x*scalex,point.y*scaley);
+   fprintf(handle,"\\pgfxy(%g,%g)",point.x*scalex,point.y*scaley);
 }
 //---------------------------------------------------------------------------
 void PGFWriter::writeVect(const FIGObject::IntPoint& point)
@@ -132,7 +131,7 @@ void PGFWriter::writeColor(int slot)
    if ((!c.r)&&(!c.g)&&(!c.b)) return;
    double r=c.r,g=c.g,b=c.b;
    r/=255.0; g/=255.0; b/=255.0;
-   fprintf(static_cast<FILE*>(handle),"\\color[rgb]{%g,%g,%g}",r,g,b);
+   fprintf(handle,"\\color[rgb]{%g,%g,%g}",r,g,b);
 }
 //---------------------------------------------------------------------------
 void PGFWriter::writeFillColor(int slot,int style)
@@ -155,13 +154,13 @@ void PGFWriter::writeFillColor(int slot,int style)
       double scale=(style-20)/20.0;
       r=1.0-((1.0-r)*scale); g=1.0-((1.0-g)*scale); b=1.0-((1.0-b)*scale);
    }
-   fprintf(static_cast<FILE*>(handle),"\\color[rgb]{%g,%g,%g}",r,g,b);
+   fprintf(handle,"\\color[rgb]{%g,%g,%g}",r,g,b);
 }
 //---------------------------------------------------------------------------
 void PGFWriter::writeFontSize(double size)
    // Write a color
 {
-   fprintf(static_cast<FILE*>(handle),"\\fontsize{%d}{%d}",static_cast<int>(size),static_cast<int>(size*1.2));
+   fprintf(handle,"\\fontsize{%d}{%d}",static_cast<int>(size),static_cast<int>(size*1.2));
 }
 //---------------------------------------------------------------------------
 static string arrowCode(const FIGObject::Arrow& arrow,bool forward)

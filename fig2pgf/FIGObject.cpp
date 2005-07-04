@@ -48,6 +48,42 @@ void FIGObject::LineStyle::read(FIGLexer& in)
    style=in.readInt();
 }
 //---------------------------------------------------------------------------
+FIGObject::Bounds::Bounds()
+   // Constructor
+{
+   upperLeft.x=1; upperLeft.y=0;
+   lowerRight.x=0; lowerRight.y=0;
+}
+//---------------------------------------------------------------------------
+void FIGObject::Bounds::combine(const FloatPoint& p)
+   // Combine
+{
+   if (empty()) {
+      upperLeft=p; lowerRight=p;
+   } else {
+      if (p.x<upperLeft.x) upperLeft.x=p.x;
+      if (p.y<upperLeft.y) upperLeft.y=p.y;
+      if (p.x>lowerRight.x) lowerRight.x=p.x;
+      if (p.y>lowerRight.y) lowerRight.y=p.y;
+   }
+}
+//---------------------------------------------------------------------------
+void FIGObject::Bounds::combine(const IntPoint& p)
+   // Combine
+{
+   FloatPoint p2; p2.x=p.x; p2.y=p.y;
+   combine(p2);
+}
+//---------------------------------------------------------------------------
+void FIGObject::Bounds::combine(const Bounds& p)
+   // Combine
+{
+   if (p.empty()) return;
+
+   combine(p.upperLeft);
+   combine(p.lowerRight);
+}
+//---------------------------------------------------------------------------
 FIGObject::FIGObject()
    : next(0)
    // Constructor

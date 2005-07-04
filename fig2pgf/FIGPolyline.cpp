@@ -71,15 +71,12 @@ void FIGPolyline::read(FIGLexer& in,FIGFile& file)
    }
 }
 //---------------------------------------------------------------------------
-double FIGPolyline::getMaxY() const
-   // Return the maximum y coordinate
+FIGObject::Bounds FIGPolyline::getBounds() const
+   // Get the bounding box
 {
-   if (points.size()>0) {
-      double m=(*(points.begin())).y;
-      for (vector<IntPoint>::const_iterator iter=points.begin();iter!=points.end();++iter)
-         if ((*iter).y>m)
-            m=(*iter).y;
-      return m;
-   } else return 0;
+   Bounds b;
+   for (vector<IntPoint>::const_iterator iter=points.begin();iter!=points.end();++iter)
+      b.combine(*iter);
+   return b;
 }
 //---------------------------------------------------------------------------

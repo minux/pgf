@@ -69,6 +69,24 @@ struct FIGObject
       /// Read it
       void read(FIGLexer& in);
    };
+   /// Bounds information
+   struct Bounds {
+      /// Coordinates
+      FloatPoint upperLeft,lowerRight;
+
+      /// Constructor
+      Bounds();
+
+      /// Empty?
+      bool empty() const { return upperLeft.x>lowerRight.x; }
+
+      /// Combine
+      void combine(const FloatPoint& p);
+      /// Combine
+      void combine(const IntPoint& p);
+      /// Combine
+      void combine(const Bounds& p);
+   };
 
    /// The next entry
    FIGObject* next;
@@ -85,8 +103,8 @@ struct FIGObject
    virtual Type getType() const = 0;
    /// Read the object
    virtual void read(FIGLexer& in,FIGFile& file) = 0;
-   /// Get the maximum y coordinate
-   virtual double getMaxY() const = 0;
+   /// Get the bounding box
+   virtual Bounds getBounds() const = 0;
 };
 //---------------------------------------------------------------------------
 #endif

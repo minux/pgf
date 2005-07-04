@@ -47,16 +47,12 @@ void FIGCompound::read(FIGLexer& in,FIGFile& file)
           depth=iter->depth;
 }
 //---------------------------------------------------------------------------
-double FIGCompound::getMaxY() const
-   // Return the maximum y coordinate
+FIGObject::Bounds FIGCompound::getBounds() const
+   // Get the bounding box
 {
-   if (childs) {
-      double m=childs->getMaxY();
-      for (FIGObject* iter=childs->next;iter;iter=iter->next) {
-	 double m2=iter->getMaxY();
-	 if (m2>m) m=m2;
-      }
-      return m;
-   } else return 0;
+   Bounds b;
+   for (FIGObject* iter=childs;iter;iter=iter->next)
+      b.combine(iter->getBounds());
+   return b;
 }
 //---------------------------------------------------------------------------

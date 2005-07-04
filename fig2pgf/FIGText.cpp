@@ -47,9 +47,11 @@ void FIGText::read(FIGLexer& in,FIGFile& /*file*/)
    in.endLine();
 }
 //---------------------------------------------------------------------------
-double FIGText::getMaxY() const
-   // Return the maximum y coordinate
+FIGObject::Bounds FIGText::getBounds() const
+   // Get the bounding box
 {
-   return base.y;
+   Bounds b;
+   b.combine(base);
+   return b;
 }
 //---------------------------------------------------------------------------

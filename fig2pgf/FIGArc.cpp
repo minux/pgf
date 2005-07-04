@@ -49,13 +49,14 @@ void FIGArc::read(FIGLexer& in,FIGFile& file)
       backwardarrow.read(in);
 }
 //---------------------------------------------------------------------------
-double FIGArc::getMaxY() const
-   // Return the maximum y coordinate
+FIGObject::Bounds FIGArc::getBounds() const
+   // Get the bounding box
 {
-   double m=center.y;
-   if (p1.y>m) m=p1.y;
-   if (p2.y>m) m=p2.y;
-   if (p3.y>m) m=p3.y;
-   return m;
+   Bounds b;
+   b.combine(center);
+   b.combine(p1);
+   b.combine(p2);
+   b.combine(p3);
+   return b;
 }
 //---------------------------------------------------------------------------
