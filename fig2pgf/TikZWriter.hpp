@@ -1,5 +1,5 @@
-#ifndef H_PGFWriter
-#define H_PGFWriter
+#ifndef H_TikZWriter
+#define H_TikZWriter
 //---------------------------------------------------------------------------
 /*
    Copyright (C) 2005 Thomas Neumann
@@ -19,11 +19,11 @@
 //---------------------------------------------------------------------------
 #include "LatexWriter.hpp"
 //---------------------------------------------------------------------------
-class PGFWriter : public LatexWriter
+class TikZWriter : public LatexWriter
 {
    private:
-   PGFWriter(const PGFWriter&);
-   void operator=(const PGFWriter&);
+   TikZWriter(const TikZWriter&);
+   void operator=(const TikZWriter&);
 
    /// Write a point
    void writePoint(const FIGObject::FloatPoint& point);
@@ -33,9 +33,6 @@ class PGFWriter : public LatexWriter
    void writeVect(const FIGObject::FloatPoint& point);
    /// Write a vector
    void writeVect(const FIGObject::IntPoint& point);
-
-   /// Triggered before the real processing
-   void preparationDone();
 
    /// Process an element
    void processArc(const FIGArc& o);
@@ -54,9 +51,9 @@ class PGFWriter : public LatexWriter
 
    public:
    /// Constructor
-   PGFWriter();
+   TikZWriter();
    /// Destructor
-   ~PGFWriter();
+   ~TikZWriter();
 };
 //---------------------------------------------------------------------------
 #endif

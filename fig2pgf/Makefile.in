@@ -101,7 +101,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 bin_PROGRAMS = fig2pgf
-fig2pgf_SOURCES = fig2pgf.cpp FIGArc.cpp FIGBackend.cpp FIGCompound.cpp FIGEllipse.cpp FIGFile.cpp FIGLexer.cpp FIGLineObject.cpp FIGObject.cpp FIGPolyline.cpp FIGSpline.cpp FIGText.cpp PGFWriter.cpp
+fig2pgf_SOURCES = fig2pgf.cpp FIGArc.cpp FIGBackend.cpp FIGCompound.cpp FIGEllipse.cpp FIGFile.cpp FIGLexer.cpp FIGLineObject.cpp FIGObject.cpp FIGPolyline.cpp FIGSpline.cpp FIGText.cpp LatexWriter.cpp PGFWriter.cpp TikZWriter.cpp
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -113,7 +113,8 @@ am_fig2pgf_OBJECTS = fig2pgf.$(OBJEXT) FIGArc.$(OBJEXT) \
 	FIGBackend.$(OBJEXT) FIGCompound.$(OBJEXT) FIGEllipse.$(OBJEXT) \
 	FIGFile.$(OBJEXT) FIGLexer.$(OBJEXT) FIGLineObject.$(OBJEXT) \
 	FIGObject.$(OBJEXT) FIGPolyline.$(OBJEXT) FIGSpline.$(OBJEXT) \
-	FIGText.$(OBJEXT) PGFWriter.$(OBJEXT)
+	FIGText.$(OBJEXT) LatexWriter.$(OBJEXT) PGFWriter.$(OBJEXT) \
+	TikZWriter.$(OBJEXT)
 fig2pgf_OBJECTS = $(am_fig2pgf_OBJECTS)
 fig2pgf_LDADD = $(LDADD)
 fig2pgf_DEPENDENCIES =
@@ -129,7 +130,8 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/FIGLineObject.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/FIGObject.Po ./$(DEPDIR)/FIGPolyline.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/FIGSpline.Po ./$(DEPDIR)/FIGText.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/PGFWriter.Po ./$(DEPDIR)/fig2pgf.Po
+@AMDEP_TRUE@	./$(DEPDIR)/LatexWriter.Po ./$(DEPDIR)/PGFWriter.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/TikZWriter.Po ./$(DEPDIR)/fig2pgf.Po
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 CXXLD = $(CXX)
@@ -206,7 +208,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FIGPolyline.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FIGSpline.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FIGText.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LatexWriter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PGFWriter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TikZWriter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fig2pgf.Po@am__quote@
 
 distclean-depend:

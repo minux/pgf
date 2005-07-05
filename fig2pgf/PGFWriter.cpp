@@ -24,7 +24,6 @@
 using namespace std;
 //---------------------------------------------------------------------------
 PGFWriter::PGFWriter()
-   : handle(0),fig(0)
    // Constructor
 {
 }
@@ -32,87 +31,34 @@ PGFWriter::PGFWriter()
 PGFWriter::~PGFWriter()
    // Destructor
 {
-   if (handle)
-      fclose(handle);
 }
 //---------------------------------------------------------------------------
-bool PGFWriter::create(const string& name)
-   // Open
+void PGFWriter::preparationDone()
+   // Triggered before the real processing
 {
-   if (handle)
-      fclose(handle);
-   handle=fopen(name.c_str(),"wt");
-   return handle;
-}
-//---------------------------------------------------------------------------
-void PGFWriter::process(const FIGFile& file)
-   // Process the file
-{
-   fig=&file;
-   // Scale to the specified size
-   scalex=0.393700787/static_cast<double>(file.getResolution());
-   scaley=scalex;
-   // Determine the bounding box
-   bounds=FIGObject::Bounds();
-   for (const FIGObject* iter=file.getObjects();iter;iter=iter->next)
-      bounds.combine(iter->getBounds());
    // Output the expected bounding box
-   fprintf(handle,"%% bb {%gmm}{%gmm}\n",
-      (bounds.lowerRight.x-bounds.upperLeft.x)*scalex*10.0,
-      (bounds.lowerRight.y-bounds.upperLeft.y)*scaley*10.0);
-
-   // Process the data
-   FIGBackend::process(file);
+   write("%% bb {"+
+      ftoa((bounds.lowerRight.x-bounds.upperLeft.x)*scalex*10.0)+"mm}{"+
+      ftoa((bounds.lowerRight.y-bounds.upperLeft.y)*scaley*10.0)+"mm}\n");
 }
 //---------------------------------------------------------------------------
-static string escapeLatex(const string& str)
-   // Escape Latex specials
-{
-   string result;
-   for (string::const_iterator iter=str.begin();iter!=str.end();++iter)
-      switch (*iter) {
-	 case '$': result+="{\\$}"; break;
-	 case '%': result+="{\\%}"; break;
-	 case '_': result+="{\\_}"; break;
-	 case '}': result+="{\\}}"; break;
-	 case '&': result+="{\\&}"; break;
-	 case '#': result+="{\\#}"; break;
-	 case '{': result+="{\\{}"; break;
-	 case '^': result+="{\\textasciicircum}"; break;
-	 case '~': result+="{\\textasciitilde}"; break;
-	 case '\\': result+="{\\textbackslash}"; break;
-	 case '|': result+="{\\textbar}"; break;
-	 case '<': result+="{\\textless}"; break;
-	 case '>': result+="{\\textgreater}"; break;
-	 case '\"': result+="{\\textquotedblright}"; break;
-	 default: result+=*iter; break;
-      }
-   return result;
-}
-//---------------------------------------------------------------------------
-void PGFWriter::write(const std::string& str)
-   // Write some text
-{
-   fprintf(handle,"%s",str.c_str());
-}
-//---------------------------------------------------------------------------
-void PGFWriter::write(const FIGObject::FloatPoint& point)
+void PGFWriter::writePoint(const FIGObject::FloatPoint& point)
    // Write a point
 {
-   fprintf(handle,"\\pgfxy(%g,%g)",(point.x-bounds.upperLeft.x)*scalex,(bounds.lowerRight.y-point.y)*scaley);
+   write("\\pgfxy("+ftoa((point.x-bounds.upperLeft.x)*scalex)+","+ftoa((bounds.lowerRight.y-point.y)*scaley)+")");
 }
 //---------------------------------------------------------------------------
-void PGFWriter::write(const FIGObject::IntPoint& point)
+void PGFWriter::writePoint(const FIGObject::IntPoint& point)
    // Write a point
 {
    FIGObject::FloatPoint p; p.x=point.x; p.y=point.y;
-   write(p);
+   writePoint(p);
 }
 //---------------------------------------------------------------------------
 void PGFWriter::writeVect(const FIGObject::FloatPoint& point)
    // Write a vector
 {
-   fprintf(handle,"\\pgfxy(%g,%g)",point.x*scalex,point.y*scaley);
+   write("\\pgfxy("+ftoa(point.x*scalex)+","+ftoa(point.y*scaley)+")");
 }
 //---------------------------------------------------------------------------
 void PGFWriter::writeVect(const FIGObject::IntPoint& point)
@@ -120,47 +66,6 @@ void PGFWriter::writeVect(const FIGObject::IntPoint& point)
 {
    FIGObject::FloatPoint p; p.x=point.x; p.y=point.y;
    writeVect(p);
-}
-//---------------------------------------------------------------------------
-void PGFWriter::writeColor(int slot)
-   // Write a color
-{
-   if (slot<0) return;
-   FIGFile::Color c=fig->getColor(slot);
-   if (!c.set) return;
-   if ((!c.r)&&(!c.g)&&(!c.b)) return;
-   double r=c.r,g=c.g,b=c.b;
-   r/=255.0; g/=255.0; b/=255.0;
-   fprintf(handle,"\\color[rgb]{%g,%g,%g}",r,g,b);
-}
-//---------------------------------------------------------------------------
-void PGFWriter::writeFillColor(int slot,int style)
-   // Write a fill color
-{
-   if (slot<0) return;
-   FIGFile::Color c=fig->getColor(slot);
-   if (!c.set) return;
-   // Adjust to style
-   double r=c.r,g=c.g,b=c.b;
-   r/=255.0; g/=255.0; b/=255.0;
-   if ((style>=0)&&(style<=20)) {
-      // Special for black
-      if (!slot) {
-	 r=g=b=(20-style)/20.0;
-      } else {
-         r*=style/20.0; g*=style/20.0; b*=style/20.0;
-      }
-   } else if ((style>=21)&&(style<=40)) {
-      double scale=(style-20)/20.0;
-      r=1.0-((1.0-r)*scale); g=1.0-((1.0-g)*scale); b=1.0-((1.0-b)*scale);
-   }
-   fprintf(handle,"\\color[rgb]{%g,%g,%g}",r,g,b);
-}
-//---------------------------------------------------------------------------
-void PGFWriter::writeFontSize(double size)
-   // Write a color
-{
-   fprintf(handle,"\\fontsize{%d}{%d}",static_cast<int>(size),static_cast<int>(size*1.2));
 }
 //---------------------------------------------------------------------------
 static string arrowCode(const FIGObject::Arrow& arrow,bool forward)
@@ -225,7 +130,7 @@ void PGFWriter::processEllipse(const FIGEllipse& o)
       write("{");
       writeFillColor(o.fillcolor,o.areafill);
       write("\\pgfellipse[fill]{");
-      write(o.center);
+      writePoint(o.center);
       write("}{");
       writeVect(v1);
       write("}{");
@@ -239,7 +144,7 @@ void PGFWriter::processEllipse(const FIGEllipse& o)
 
    // Draw the elipse
    write("\\pgfellipse[stroke]{");
-   write(o.center);
+   writePoint(o.center);
    write("}{");
    writeVect(v1);
    write("}{");
@@ -277,11 +182,11 @@ void PGFWriter::processPolyline(const FIGPolyline& o,bool close)
       write("{");
       writeFillColor(o.fillcolor,o.areafill);
       vector<FIGObject::IntPoint>::const_iterator iter=o.points.begin();
-      write("\\pgfmoveto{"); write(*iter); write("}");
+      write("\\pgfmoveto{"); writePoint(*iter); write("}");
       for (++iter;iter!=o.points.end();++iter) {
-	 write("\\pgflineto{"); write(*iter); write("}");
+	 write("\\pgflineto{"); writePoint(*iter); write("}");
       }
-      write("\\pgfeofill}");
+      write("\\pgffill}");
    }
 
    // Intro for the line
@@ -291,10 +196,10 @@ void PGFWriter::processPolyline(const FIGPolyline& o,bool close)
    // Draw the line
    vector<FIGObject::IntPoint>::const_iterator iter=o.points.begin();
    write("\\pgfmoveto");
-   write("{"); write(*iter); write("}");
+   write("{"); writePoint(*iter); write("}");
    for (++iter;iter!=o.points.end();++iter) {
       write("\\pgflineto");
-      write("{"); write(*iter); write("}");
+      write("{"); writePoint(*iter); write("}");
    }
    if (close)
       write("\\pgfclosestroke"); else
@@ -347,7 +252,7 @@ void PGFWriter::processText(const FIGText& o)
    if (o.hiddentext) return;
 
    // Position the text
-   write("\\pgfputat{"); write(o.base); write("}{\\pgfbox[");
+   write("\\pgfputat{"); writePoint(o.base); write("}{\\pgfbox[");
    switch (o.subtype) {
       case FIGText::Subtype_Left: write("left"); break;
       case FIGText::Subtype_Center: write("center"); break;

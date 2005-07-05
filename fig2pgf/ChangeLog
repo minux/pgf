@@ -1,3 +1,6 @@
+2006-07-05 Thomas Neumann
+   Support for TikZ (now the default)
+
 2006-07-02 Thomas Neumann
    Improved bounding box calculation
 

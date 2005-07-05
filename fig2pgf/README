@@ -1,7 +1,10 @@
-fig2pgf converts a xfig image into pgf code (currently pgf 0.65).
+fig2pgf converts a xfig image into pgf code (currently pgf 0.65) or
+TikZ code (pgf 0.95).
 
-Usage: fig2pgf file1.fig file2.pgf
+Usage: fig2pgf [--pgf|--tikz] file1.fig file2.pgf
 
-Notice: The pgf backend is currently quite limited, only lines
-(polygons, boxes etc.) and text is supported. Parsing is complete,
-so missing features can be implemented in PGFWriter.cpp.
+The default format ist tikz as it is more user friendly.
+
+Notice: The backends are currently quite limited, only lines
+(polygons, boxes etc.) and text are supported. Parsing is complete,
+so missing features can be implemented in PGFWriter.cpp and TikZWriter.cpp.

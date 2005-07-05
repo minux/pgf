@@ -17,28 +17,56 @@
 #include "FIGLexer.hpp"
 #include "FIGFile.hpp"
 #include "PGFWriter.hpp"
+#include "TikZWriter.hpp"
 #include <cstdio>
+#include <cstring>
+//---------------------------------------------------------------------------
+using namespace std;
+//---------------------------------------------------------------------------
+static void showHelp(const char* argv0)
+{
+   fprintf(stderr,"usage: %s [options] in out\n",argv0);
+   fprintf(stderr,"supported options:\n");
+   fprintf(stderr,"--tikz generate TikZ output (default)\n");
+   fprintf(stderr,"--pgf  generate PGF output\n");
+}
 //---------------------------------------------------------------------------
 int main(int argc,char* argv[])
 {
-   if (argc!=3) {
-      fprintf(stderr,"usage: %s in out\n",argv[0]);
+   // Interpret options
+   int start=1;
+   enum { PGF, TikZ } format = TikZ;
+   for (;start<argc;start++)
+      if (strcmp(argv[start],"--pgf")==0) { format=PGF; } else
+      if (strcmp(argv[start],"--tikz")==0) { format=TikZ; } else
+         break;
+
+   // Check for the correct number of arguments
+   if (start+2!=argc) {
+      showHelp(argv[0]);
       return 1;
    }
+   // Read the fig file
    FIGLexer in;
-   if (!in.open(argv[1])) {
-      fprintf(stderr,"unable to open %s\n",argv[1]);
+   if (!in.open(argv[start])) {
+      fprintf(stderr,"unable to open %s\n",argv[start]);
       return 1;
    }
    FIGFile fig;
    fig.read(in);
 
-   PGFWriter out;
-   if (!out.create(argv[2])) {
-      fprintf(stderr,"unable to create %s\n",argv[2]);
+   // Create the output
+   LatexWriter* out;
+   bool created;
+   switch (format) {
+      case PGF: out=new PGFWriter(); break;
+      case TikZ: out=new TikZWriter(); break;
+   }
+   if (!out->create(argv[start+1])) {
+      fprintf(stderr,"unable to create %s\n",argv[start+1]);
       return 1;
    }
 
-   out.process(fig);
+   out->process(fig);
 }
 //---------------------------------------------------------------------------
