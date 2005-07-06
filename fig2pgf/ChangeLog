@@ -1,3 +1,6 @@
+2006-07-06 Thomas Neumann
+   Fixed ellipses, proper font size
+
 2006-07-05 Thomas Neumann
    Support for TikZ (now the default)
 

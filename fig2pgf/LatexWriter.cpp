@@ -182,6 +182,9 @@ void LatexWriter::writeFillColor(int slot,int style)
 void LatexWriter::writeFontSize(double size)
    // Write a color
 {
-   fprintf(handle,"\\fontsize{%d}{%d}",static_cast<int>(size),static_cast<int>(size*1.2));
+   // Scale down a bit, should probably be an option...
+   size/=1.2;
+
+   fprintf(handle,"\\fontsize{%dpt}{%dpt}\\selectfont ",static_cast<int>(size),static_cast<int>(size*1.2));
 }
 //---------------------------------------------------------------------------

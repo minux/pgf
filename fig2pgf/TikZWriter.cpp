@@ -49,7 +49,7 @@ void TikZWriter::writePoint(const FIGObject::IntPoint& point)
 void TikZWriter::writeVect(const FIGObject::FloatPoint& point)
    // Write a vector
 {
-   write("("+ftoa(point.x*scalex)+"/"+ftoa(point.y*scaley)+")");
+   write("("+ftoa(point.x*scalex)+"cm/"+ftoa(point.y*scaley)+"cm)");
 }
 //---------------------------------------------------------------------------
 void TikZWriter::writeVect(const FIGObject::IntPoint& point)
