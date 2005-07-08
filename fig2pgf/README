@@ -1,5 +1,5 @@
 fig2pgf converts a xfig image into pgf code (currently pgf 0.65) or
-TikZ code (pgf 0.95).
+TikZ code (pgf 0.96).
 
 Usage: fig2pgf [--pgf|--tikz] file1.fig file2.pgf
 

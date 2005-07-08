@@ -123,7 +123,7 @@ void TikZWriter::processEllipse(const FIGEllipse& o)
    write(intro); write("] ");
    writePoint(o.center);
    write(" ellipse ");
-   writeVect(o.radius);
+   write("("+ftoa(o.radius.x*scalex)+"cm and "+ftoa(o.radius.y*scaley)+"cm)");
    write(";");
 
    write("}\n");
