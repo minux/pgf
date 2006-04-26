@@ -105,6 +105,7 @@ void FIGLexer::readHeader()
    skipNL();
 
    if (line=="#FIG 3.2") return;
+   if (line.substr(0,9)=="#FIG 3.2 ") return;
 
    error("unknown fig version '"+line+"'");
 }
