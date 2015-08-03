@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.146 2014/11/02 21:38:01 cfeuersaenger Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.147 2015/05/08 10:23:50 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -702,6 +702,7 @@
 
 \tikzset{tikz@label@post/.code 2 args={
   \edef\tikz@label@angle{\tikz@label@angle}%
+  \expandafter\pgfkeys@spdef\expandafter\tikz@label@angle\expandafter{\tikz@label@angle}%
   \csname tikz@label@angle@is@\tikz@label@angle\endcsname
   \ifx\tikz@label@angle\tikz@on@text%
     \def\tikz@node@at{\pgfpointanchor{\tikzlastnode}{center}}%
