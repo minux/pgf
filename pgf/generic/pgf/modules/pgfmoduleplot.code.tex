@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleplot.code.tex,v 1.11 2013/07/15 12:05:34 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleplot.code.tex,v 1.12 2013/07/31 16:22:24 tantau Exp $
 
 
 % PGF's plotting interface works as follows:
@@ -328,6 +328,7 @@
 
 \def\pgfplotxyfile#1{%
   \begingroup%
+    \def\b@pgfplotsxyfile@scanning@for@first{1}%
     \pgfplotstreamstart%
     \openin\r@pgf@reada=#1
     \ifeof\r@pgf@reada
@@ -348,9 +349,15 @@
   \let\par=\pgf@savedpar%
   \edef\pgf@temp{\pgf@temp}%
   \ifx\pgf@temp\pgfutil@empty%
-    \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \if1\b@pgfplotsxyfile@scanning@for@first
+    \else
+        \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \fi
   \else\ifx\pgf@temp\pgf@partext%
-    \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \if1\b@pgfplotsxyfile@scanning@for@first
+    \else
+        \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \fi
   \else%
     \expandafter\pgf@parsexyline\pgf@temp\pgf@stop%
   \fi\fi%
@@ -358,6 +365,7 @@
 }
 
 \def\pgf@parsexyline#1 #2 #3\pgf@stop{%
+  \def\b@pgfplotsxyfile@scanning@for@first{0}%
   \edef\pgf@xyline@flag@val{#3}%
   \ifx\pgf@xyline@flag@val\pgf@xyline@flag@undef%
     \pgfplotstreampointundefined%
@@ -405,9 +413,15 @@
 \def\pgf@readxyzfile{%
   \pgfutil@read\r@pgf@reada to \pgf@temp%
   \ifx\pgf@temp\pgfutil@empty%
-    \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \if1\b@pgfplotsxyfile@scanning@for@first
+    \else
+        \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \fi
   \else\ifx\pgf@temp\pgf@partext%
-    \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \if1\b@pgfplotsxyfile@scanning@for@first
+    \else
+        \ifeof\r@pgf@reada\else\pgfplotstreamnewdataset\fi%
+    \fi
   \else%
     \expandafter\pgf@parsexyzline\pgf@temp\pgf@stop%
   \fi\fi%
@@ -415,6 +429,7 @@
 }
 
 \def\pgf@parsexyzline#1 #2 #3 #4\pgf@stop{%
+  \def\b@pgfplotsxyfile@scanning@for@first{0}%
   \edef\pgf@xyline@flag@val{#4}%
   \ifx\pgf@xyline@flag@val\pgf@xyline@flag@undef%
     \pgfplotstreampointundefined%
