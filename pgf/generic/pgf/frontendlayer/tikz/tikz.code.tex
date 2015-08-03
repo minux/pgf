@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.148 2015/08/03 08:10:12 cfeuersaenger Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.149 2015/08/03 08:26:47 cfeuersaenger Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -3957,6 +3957,7 @@
   \setbox\tikz@figbox@bg=\box\tikz@tempbox@bg%
   \global\pgflinewidth=\tikz@save@line@width%
   \tikz@do@after@path@smuggle%
+  \tikz@node@is@picfalse
   \tikz@do@after@node%
 }
 \let\tikz@fig@continue@orig=\tikz@fig@continue
