@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.50 2015/08/13 16:26:20 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.51 2015/08/14 12:39:57 tantau Exp $
 
 
 % Load key mechanism
@@ -798,7 +798,10 @@
 % Specifies that the animation should only restart when it is not active
 
 \def\pgfsys@animation@repeat#1{}
-% #1 must be a number or the text "indefinite"
+% #1 must be a number 
+
+\def\pgfsys@animation@repeat@indefinite{}
+% Repeat till the end
 
 \def\pgfsys@animation@repeat@dur#1{}
 % #1 must be a clock value
