@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.156 2015/08/19 11:45:37 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.157 2015/08/19 22:47:27 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -4025,7 +4025,7 @@
     % Assign a dummy name
     \global\advance\tikz@fig@count by1\relax
     \edef\tikz@fig@name{tikz@f@\the\tikz@fig@count}%
-    \let\tikz@id@name\tikz@fig@nam%
+    \let\tikz@id@name\tikz@fig@name%
   \fi%
 }
 
