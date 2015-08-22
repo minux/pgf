@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.20 2015/08/07 10:17:34 cfeuersaenger Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.21 2015/08/18 14:43:11 tantau Exp $
 
 
 % Position transformations
@@ -779,6 +779,7 @@
       \pgf@y\pgf@ya%
       \pgf@ya\pgfutil@tempdima%
     \fi%
+    \pgfusetype{.view}%
     \edef\pgf@marshal{\expandafter\noexpand\csname pgfsys@viewbox#5\endcsname{\the\pgf@x}{\the\pgf@y}{\the\pgf@xa}{\the\pgf@ya}{\the\pgf@xb}{\the\pgf@yb}{\the\pgf@xc}{\the\pgf@yc}}%
     \pgf@marshal%
   }%

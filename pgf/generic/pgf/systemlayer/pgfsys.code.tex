@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.56 2015/08/19 22:47:27 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.57 2015/08/20 12:20:19 tantau Exp $
 
 
 % Load key mechanism
@@ -557,6 +557,14 @@
 
 \def\pgfsys@endscope{\pgf@sys@fail{scoping}}
 % Restores the last saved graphic state.
+
+
+
+%
+%
+% Id management
+%
+%
 
 \def\pgfsys@use@id#1{}
 % Sets the id to be used for the next graphic object (group, box, or
