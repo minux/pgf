@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.8 2015/08/20 12:20:19 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.9 2015/08/24 20:33:52 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -283,7 +283,6 @@
       \setbox0=\hbox{{% protext against side effects
           \pgfinterruptpath%
             \pgf@relevantforpicturesizefalse%
-            \pgftransformreset%
             \tikz@scan@next@command#1\pgf@stop%
             \pgfsyssoftpath@getcurrentpath\tikz@anim@parsed@path%
             \global\let\tikz@anim@parsed@path\tikz@anim@parsed@path%
