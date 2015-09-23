@@ -7,7 +7,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more information
 
--- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Path.lua,v 1.2 2013/09/23 20:04:26 tantau Exp $
+-- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Path.lua,v 1.3 2014/02/24 10:40:32 tantau Exp $
 
 
 --- 
@@ -543,6 +543,10 @@ function Path:intersectionsWith(path)
   
   local function intersect (i1, j1, i2, j2)
 
+    if i1 > j1 or i2 > j2 then
+      return
+    end
+    
     local bb1 = bb(i1, j1, memo1)
     local bb2 = bb(i2, j2, memo2)
     
