@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleshapes.code.tex,v 1.37 2015/08/19 22:47:27 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleshapes.code.tex,v 1.38 2015/08/24 20:33:52 tantau Exp $
 
 
 
@@ -122,9 +122,11 @@
     \pgf@relevantforpicturesizetrue%
     \setbox\pgfpositionnodelaterbox=\hbox%
       \bgroup%
+        \pgfsys@beginscope%
 }
   
 \def\pgf@shapes@late@pos@end{%
+       \pgfsys@endscope%
       \egroup% Close box
     \ifdim\pgf@picminx>\pgf@picmaxx\relax% happens for empty nodes
       \def\pgfpositionnodelaterminx{0.0pt}%

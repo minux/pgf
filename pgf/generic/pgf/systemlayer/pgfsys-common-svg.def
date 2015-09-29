@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.39 2015/09/09 21:15:38 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.40 2015/09/11 11:18:38 tantau Exp $
 
 
 % Driver commands for svg
@@ -231,7 +231,7 @@
 \def\pgfsys@beveljoin{\pgf@sys@svg@gs{stroke-linejoin="bevel"}}
 
 % Invisibility
-\def\pgfsys@begininvisible{\pgfsysprotocol@literal{<g visible="hidden">\pgfsys@svg@newline }}
+\def\pgfsys@begininvisible{\pgfsysprotocol@literal{<g visibility="hidden">\pgfsys@svg@newline }}
 \def\pgfsys@endinvisible{\pgfsysprotocol@literal{</g>}}
 
 
