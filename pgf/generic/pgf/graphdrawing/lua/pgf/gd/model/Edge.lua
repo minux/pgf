@@ -7,7 +7,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more information
 
--- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Edge.lua,v 1.5 2013/09/23 20:04:26 tantau Exp $
+-- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Edge.lua,v 1.6 2013/12/20 14:44:47 tantau Exp $
 
 
 --- 
@@ -60,7 +60,10 @@
 -- by the algorithm. When the edge is rendered later on, this array
 -- will be passed back to the display layer. The syntax is the same as
 -- for the |declare_parameter_sequence| function, see
--- |InterfaceToAlgorithms|. 
+-- |InterfaceToAlgorithms|.
+--
+-- @field animations An array of animations, see the |animations|
+-- field of the |Vertex| class for the syntax. 
 
 local Edge = {}
 Edge.__index = Edge
@@ -94,6 +97,7 @@ function Edge.new(values)
     new[k] = v
   end
   new.generated_options = new.generated_options or {}
+  new.animations = new.animations or {}
   if not new.path then
     local p = Path.new ()
     p:appendMoveto(Edge.tailAnchorForEdgePath(new))

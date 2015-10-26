@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.42 2015/10/01 16:03:06 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.43 2015/10/26 12:53:45 tantau Exp $
 
 
 % Driver commands for svg
@@ -902,6 +902,8 @@
   \advance\pgf@yb by-\pgf@xa%
   \multiply\pgf@yb by\pgf@xc%
   \divide\pgf@yb by\pgf@xb%
+  \ifdim\pgf@yb<0pt\pgf@yb=0pt\fi%
+  \ifdim\pgf@yb>1pt\pgf@yb=1pt\fi%
   \pgf@sys@svg@append{keyTimes}{\pgf@sys@tonumber\pgf@yb}%
 }
 \def\pgf@sys@svg@add@spline#1#2#3#4{\pgf@sys@svg@append{keySplines}{#1 #2 #3 #4}}
