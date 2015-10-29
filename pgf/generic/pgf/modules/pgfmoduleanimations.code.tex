@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.15 2015/10/29 18:22:03 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.16 2015/10/29 20:22:36 tantau Exp $
 
 
 % We need the animation system abstraction:
@@ -697,11 +697,8 @@
     \pgfmathsetmacro\pgf@temp@a{#2}%
     \edef\pgf@anim@exit@spline{{\pgf@temp@t}{\pgf@temp@a}}%
   },
-  ease/.style={
-    entry control={1-(#1)}{1},
-    exit control={#1}{0}
-  },
-  ease/.default=0.3
+  stay/.code=\let\pgf@anim@exit@spline\pgfsys@stay@text,%
+  jump/.code=\let\pgf@anim@entry@spline\pgfsys@jump@text,%
 }
 \def\pgf@anim@entry@spline{{1}{1}}
 \def\pgf@anim@exit@spline{{0}{0}}
