@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.22 2015/08/22 06:26:20 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.23 2015/09/11 11:18:38 tantau Exp $
 
 
 % Position transformations
@@ -746,9 +746,11 @@
 \def\pgfviewboxscope#1#2#3#4#5{%
   {% Compute rectangle corners
     \pgf@process{#1}%
+    \pgf@pos@transform{\pgf@x}{\pgf@y}%
     \pgf@xa=\pgf@x%
     \pgf@ya=\pgf@y%
     \pgf@process{#2}%
+    \pgf@pos@transform{\pgf@x}{\pgf@y}%
     \ifdim\pgf@x<\pgf@xa%
       \pgf@xb\pgf@x%
       \pgf@xc\pgf@xa%
@@ -764,9 +766,11 @@
       \pgf@yc\pgf@y%
     \fi%
     \pgf@process{#3}%
+    \pgf@pos@transform{\pgf@x}{\pgf@y}%
     \pgf@xa=\pgf@x%
     \pgf@ya=\pgf@y%
     \pgf@process{#4}%
+    \pgf@pos@transform{\pgf@x}{\pgf@y}%
     \ifdim\pgf@x<\pgf@xa%
     \else%
       \pgfutil@tempdima\pgf@x

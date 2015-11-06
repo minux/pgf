@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.161 2015/10/01 16:03:06 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.162 2015/10/29 18:22:03 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -1780,8 +1780,8 @@
   \pgfidscope%
     \begingroup%
       \let\tikz@id@name\pgfutil@empty%
-      \pgfclearid%
       \expandafter\tikz@atbegin@scope%
+      \expandafter\pgfclearid%
       \tikz@lib@scope@check%
 }
 \def\endtikz@scope@env{%

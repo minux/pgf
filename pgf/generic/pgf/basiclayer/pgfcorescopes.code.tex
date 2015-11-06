@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcorescopes.code.tex,v 1.51 2015/10/01 16:03:06 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcorescopes.code.tex,v 1.52 2015/10/26 12:53:45 tantau Exp $
 
 % Globals
 
@@ -670,12 +670,12 @@
 % Creates an alias of a name
 
 \def\pgfaliasid#1#2{%
-  \expandafter\let\expandafter\pgf@temp\csname pgf@scope@name@#2\endcsname%
-  \expandafter\let\csname pgf@scope@name@#1\endcsname\pgf@temp%
+  \expandafter\let\expandafter\pgf@temp\csname pgf@id@names@#2\endcsname%
+  \expandafter\let\csname pgf@id@names@#1\endcsname\pgf@temp%
 }
 \def\pgfgaliasid#1#2{%
-  \expandafter\let\expandafter\pgf@temp\csname pgf@scope@name@#2\endcsname%
-  \expandafter\global\expandafter\let\csname pgf@scope@name@#1\endcsname\pgf@temp%
+  \expandafter\let\expandafter\pgf@temp\csname pgf@id@names@#2\endcsname%
+  \expandafter\global\expandafter\let\csname pgf@id@names@#1\endcsname\pgf@temp%
 }
 
 
