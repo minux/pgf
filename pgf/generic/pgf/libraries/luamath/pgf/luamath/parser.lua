@@ -8,7 +8,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more details.
 --
--- $Id: parser.lua,v 1.1 2014/12/27 14:11:49 cfeuersaenger Exp $	
+-- $Id: parser.lua,v 1.2 2015/09/06 15:24:48 cfeuersaenger Exp $	
 --
 -- usage:
 --
@@ -48,7 +48,7 @@ local integer_pattern = S("+-")^-1 * positive_integer_pattern
 local positive_integer_or_decimal_pattern = positive_integer_pattern * ( P(".") * one_digit_pattern^0)^-1 + 
                                  (P(".") * one_digit_pattern^1) 
 local integer_or_decimal_pattern = S("+-")^-1 * positive_integer_or_decimal_pattern 
-local fpu_pattern = R"15" * P"Y" * positive_integer_or_decimal_pattern * P"e" * P("-")^-1 * R("09")^1 * P"]"
+local fpu_pattern = R"05" * P"Y" * positive_integer_or_decimal_pattern * P"e" * S("+-")^-1 * R("09")^1 * P"]"
 local unbounded_pattern = P"inf" + P"INF" + P"nan" + P"NaN" + P"Inf"
 local number_pattern = C(unbounded_pattern + fpu_pattern + integer_or_decimal_pattern * (S"eE" * integer_pattern + C(tex_unit))^-1)
 
