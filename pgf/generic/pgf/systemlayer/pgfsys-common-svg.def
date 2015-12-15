@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.48 2015/11/20 10:53:26 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.49 2015/11/26 22:22:28 tantau Exp $
 
 
 % Driver commands for svg
@@ -630,16 +630,14 @@
       \pgf@x0pt%
     \else%
       \pgf@x#4pt%
-    \fi
-    \advance\pgf@x by\pgf@xa\relax%
-    \ifdim\pgf@x>0pt%
+    \fi%
+    \ifx\pgf@sys@event@target\pgf@sys@begin@text%
+      \advance\pgf@x by\pgf@xa\relax%
+    \fi\relax%
+    \ifdim\pgf@x<0pt%
+      \edef\pgf@@temp{ \pgf@sys@tonumber\pgf@x s}%
+    \else
       \edef\pgf@@temp{ +\pgf@sys@tonumber\pgf@x s}%
-    \else%
-      \ifdim\pgf@x<0pt%
-        \def\pgf@@temp{ \pgf@sys@tonumber\pgf@xs}%
-      \else%
-        \let\pgf@@temp\pgfutil@empty%
-      \fi%
     \fi%
     \xdef\pgf@svg@anim@temp{\pgf@temp#3\pgf@@temp}%
   }%  
