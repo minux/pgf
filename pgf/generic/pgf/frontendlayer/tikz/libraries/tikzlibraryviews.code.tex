@@ -7,15 +7,16 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.1 2015/08/14 12:39:56 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryviews.code.tex,v 1.1 2015/08/18 14:43:11 tantau Exp $
 
 
 \tikzset{
   meet/.style={execute at begin scope={\tikz@lib@view@parse{meet}#1\pgf@stop},execute at end scope={\endpgfviewboxscope}},
+  view/.style={meet = {#1}},
   slice/.style={execute at begin scope={\tikz@lib@view@parse{slice}#1\pgf@stop},execute at end scope={\endpgfviewboxscope}},
 }
 
-\def\tikz@lib@view@parse#1view#2\pgf@stop{%
+\def\tikz@lib@view@parse#1#2\pgf@stop{%
   \tikz@scan@one@point\tikz@lib@view@a#2\pgf@stop%
   \pgfviewboxscope{\tikz@lib@view@stored@a}{\tikz@lib@view@stored@b}{\tikz@lib@view@stored@c}{\tikz@lib@view@stored@d}{#1}%
 }
