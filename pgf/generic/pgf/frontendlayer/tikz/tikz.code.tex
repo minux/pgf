@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.163 2015/11/06 21:16:02 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.164 2016/02/02 22:03:38 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -1564,8 +1564,12 @@
 % Animation callbacks
 \let\tikz@animation@callback\relax
 \let\tikz@animation@node@callback\relax
-\def\tikz@animation@syntax@check#1#2{#2}
-
+\tikzset{
+  animate/.code=\tikzerror{You need to say \string\usetikzlibrary{animations} to use animations},
+  animate me/.style={animate={.:={#1}}},
+  animate with/.style={animate={with=#1}},
+  animate me with/.style={animate={.:={with={#1}}}}
+}
 
 %
 % Setting keys
@@ -1599,11 +1603,8 @@
         \else%
           % Ok, third chance: A shape!
           \expandafter\ifx\csname pgf@sh@s@\tikz@key\endcsname\relax%
-            % Forth chance: An animation
-            \tikz@animation@syntax@check{#1}{%
-              \pgfkeys{/errors/unknown key/.expand
-                once=\expandafter{\expandafter/\expandafter t\expandafter i\expandafter k\expandafter z\expandafter/\tikz@key}{#1}}%
-            }%
+            \pgfkeys{/errors/unknown key/.expand
+              once=\expandafter{\expandafter/\expandafter t\expandafter i\expandafter k\expandafter z\expandafter/\tikz@key}{#1}}%
           \else%
             \edef\tikz@shape{\tikz@key}%
           \fi%
