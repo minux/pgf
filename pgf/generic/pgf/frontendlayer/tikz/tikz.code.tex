@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.165 2016/02/18 19:12:47 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.166 2016/02/19 02:22:15 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -1567,8 +1567,6 @@
 \tikzset{
   animate/.code=\tikzerror{You need to say \string\usetikzlibrary{animations} to use animations},
   animate me/.style={animate={myself:={#1}}},
-  animate with/.style={animate={with=#1}},
-  animate me with/.style={animate={myself:={with={#1}}}}
 }
 
 %
