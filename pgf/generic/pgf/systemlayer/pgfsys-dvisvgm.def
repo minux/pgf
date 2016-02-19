@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvisvgm.def,v 1.6 2015/09/09 14:59:25 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvisvgm.def,v 1.7 2015/11/20 10:53:26 tantau Exp $
 
 
 % Driver commands for dvisvgm
@@ -19,6 +19,8 @@
 
 \newif\ifpgf@sys@svg@inpicture
 
+\def\pgf@sys@svg@make@defs#1#2{{\let\#\pgf@sys@svg@hash\special{dvisvgm:rawset #1}\special{dvisvgm:rawdef #2}\special{dvisvgm:endrawset}}}
+\def\pgf@sys@svg@ref@defs#1{\special{dvisvgm:rawput #1}}
 \def\pgfsys@invoke#1{{\let\#\pgf@sys@svg@hash\special{dvisvgm:raw #1}}}
 \def\pgfsys@beginpicture{\pgf@sys@svg@inpicturetrue\pgfsys@invoke{<g transform="translate({?x},{?y}) scale(0.99626400996264,-0.99626400996264)">}}
 \def\pgfsys@endpicture{\pgfsys@invoke{</g>}}
