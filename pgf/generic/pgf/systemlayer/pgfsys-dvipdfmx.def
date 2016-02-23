@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvipdfmx.def,v 1.13 2014/03/20 16:08:40 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvipdfmx.def,v 1.14 2014/07/09 14:01:22 cfeuersaenger Exp $
 
 % Driver commands for dvipdfmx
 %
@@ -469,11 +469,9 @@
 %
 % Position tracking (needs pdftex >= 1.40.0-alpha-20051205 in dvi mode)
 %
-\ifx\pdftexversion\@undefined
+\ifx\pdfsavepos\@undefined
 \else
-  \ifnum\pdftexversion>139
-    \pgf@sys@pdf@dvi@tracker
-  \fi
+  \pgf@sys@pdf@dvi@tracker
 \fi
 
 \def\pgfsys@papersize#1#2{%
