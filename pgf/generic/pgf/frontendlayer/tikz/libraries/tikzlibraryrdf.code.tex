@@ -7,14 +7,26 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryviews.code.tex,v 1.2 2015/12/28 13:19:07 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryrdf.code.tex,v 1.1 2016/03/05 17:59:42 tantau Exp $
 
 
 \tikzset{
   rdf/.cd,
   .code=\pgfqkeys{/tikz/rdf}{#1},
+  about/.code=\pgfrdfabout{#1},
+  content/.code=\pgfrdfcontent{#1},
+  datatype/.code=\pgfrdfdatatype{#1},
+  href/.code=\pgfrdfhref{#1},
+  inlist/.code=\pgfrdfinlist,
+  inlist/.value forbidden,
+  prefix/.code=\pgfrdfprefix{#1},
   property/.code=\pgfrdfproperty{#1},
+  rel/.code=\pgfrdfrel{#1},
   resource/.code=\pgfrdfresource{#1},
+  rev/.code=\pgfrdfrev{#1},
+  src/.code=\pgfrdfsrc{#1},
+  typeof/.code=\pgfrdftypeof{#1},
+  vocab/.code=\pgfrdfvocab{#1},
 }
 
 
