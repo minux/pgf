@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcore.code.tex,v 1.8 2015/08/14 12:50:19 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcore.code.tex,v 1.9 2015/08/18 23:56:36 tantau Exp $
 
 \newif\ifpgf@draftmode
 
@@ -28,6 +28,7 @@
 \input pgfcorelayers.code.tex
 \input pgfcoretransparency.code.tex
 \input pgfcorepatterns.code.tex
+\input pgfcorerdf.code.tex
 
 \pgfutil@ifundefined{pgf@texdist@protect}{%
 	\def\pgf@texdist@protect{}%
