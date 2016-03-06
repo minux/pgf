@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.23 2016/02/19 02:22:15 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.24 2016/03/05 17:59:42 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -509,7 +509,7 @@
 \tikzanimationdefineattribute{drive}{pgf attribute name=motion,code=\pgfanimationset{add,rotate along=true}}
 \tikzanimationdefineattribute{fill opacity}{}
 \tikzanimationdefineattribute{fill}{node type=.background.path}
-\tikzanimationdefineattribute{line width}{}
+\tikzanimationdefineattribute{line width}{node type=.background.path}
 \tikzanimationdefineattribute{morph}{pgf attribute name=softpath, scope type=.path, node type=.background.path, parser=path}
 \tikzanimationdefineattribute{motion}{code=\pgfanimationset{add}}
 \tikzanimationdefineattribute{opacity}{}
@@ -578,7 +578,7 @@
 
 % Attaches an animation to a named object (named in tikz)
 %
-% #1 = name of the object. If equal to the special text ".", the
+% #1 = name of the object. If equal to the special text "myself", the
 %      next created object is meant.
 % #2 = Animation code. When this code is executed, the following
 %      things will be setup:
