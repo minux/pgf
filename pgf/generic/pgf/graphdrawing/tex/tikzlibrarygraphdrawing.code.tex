@@ -8,7 +8,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/tex/tikzlibrarygraphdrawing.code.tex,v 1.20 2013/08/05 18:22:47 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/tex/tikzlibrarygraphdrawing.code.tex,v 1.21 2015/10/26 20:57:12 tantau Exp $
 
 \usepgflibrary{graphdrawing}
 
@@ -109,6 +109,8 @@
   \def\pgf@temp{#8}%
   \ifx\pgf@temp\pgfutil@empty%
   \else%
+    \pgfset{every graphdrawing animation/.try}%
+    \pgfset{every graphdrawing edge animation/.try}%
     #8%
     \pgfuseid{pgf@gd}%
     \pgfidscope%
