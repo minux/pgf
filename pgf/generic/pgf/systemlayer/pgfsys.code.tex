@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.77 2016/03/06 14:03:23 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.78 2016/03/07 00:11:13 tantau Exp $
 
 
 % Load key mechanism
@@ -573,7 +573,7 @@
 % created, use \pgfsys@beginscope additionally.
 
 \def\pgfsys@end@idscope{
-      \endgroup
+      \endgroup%
     \csname pgf@sys@att@end@\pgfsys@id@refcurrent\endcsname%
     \expandafter\global\expandafter\let\csname pgf@sys@att@end@\pgfsys@id@refcurrent\endcsname\relax%
   \endgroup
@@ -951,7 +951,7 @@
 % "visibility" adds an animation of the visiblity.
 % Type: text ("visible" or "hidden")
 %
-% "staged" works like "visibility", only the object is hidden by default.
+% "stage" works like "visibility", only the object is hidden by default.
 % Type: text ("visible" or "hidden")
 %
 % "linewidth" adds an animation of the line width.

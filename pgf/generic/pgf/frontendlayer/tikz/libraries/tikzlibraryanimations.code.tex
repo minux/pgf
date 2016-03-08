@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.25 2016/03/06 14:03:23 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.26 2016/03/07 00:11:13 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -279,7 +279,7 @@
         \endpgfinterruptpath%
       }}%
   }%
-  \pgfanimationset{along softpath=\tikz@anim@parsed@path}%
+  \pgfanimationset{along softpath/.expand once=\tikz@anim@parsed@path}%
 }
 
 \def\tikz@anim@parse@origin#1{%

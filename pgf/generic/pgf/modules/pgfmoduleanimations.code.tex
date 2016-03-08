@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.25 2016/03/06 14:03:23 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.26 2016/03/07 00:11:13 tantau Exp $
 
 
 % We need the animation system abstraction:
@@ -904,10 +904,10 @@
     \pgfanim@unpack@comma#1\pgf@stop%
   \else%
     \pgfmathparse{#1}%
-    \expandafter\pgfsysanimvalscale\expandafter{\pgfmathresult}{}%
+    \expandafter\pgfsysanimvalscale\expandafter{\pgfmathresult}{\pgfmathresult}%
   \fi%
 }
-\def\pgfanim@unpack@comma#1,#2\pgf@stop#3{%
+\def\pgfanim@unpack@comma#1,#2\pgf@stop{%
   \pgfmathsetmacro{\pgf@anim@temp@x}{#1}%
   \pgfmathsetmacro{\pgf@anim@temp@y}{#2}%
   \expandafter\expandafter\expandafter\pgfsysanimvalscale\expandafter\expandafter\expandafter{\expandafter\pgf@anim@temp@x\expandafter}\expandafter{\pgf@anim@temp@y}%

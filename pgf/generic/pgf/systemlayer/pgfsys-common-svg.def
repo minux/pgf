@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.56 2016/03/05 20:58:47 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.57 2016/03/07 00:11:13 tantau Exp $
 
 
 % Driver commands for svg
@@ -184,9 +184,9 @@
       \pgf@sys@svg@stagedfalse%
       \csname pgf@sys@att@setup@\pgfsys@id@refcurrent\endcsname%
       \pgfsys@beginscope@{ id="\pgfsys@id@refcurrent" \ifpgf@sys@svg@staged visibility="hidden" \fi\pgfsys@svg@rdf}%
-      \csname pgf@sys@att@beg@\pgfsys@id@refcurrent\endcsname%
       \expandafter\let\expandafter\pgf@sys@svg@end@id@scope@code\csname pgf@sys@att@end@\pgfsys@id@refcurrent\endcsname%
       \let\pgf@sys@svg@end@id@scope\pgfsys@endscope%
+      \csname pgf@sys@att@beg@\pgfsys@id@refcurrent\endcsname%
     }{%
       \ifx\pgfsys@svg@rdf\pgfutil@empty%
         \let\pgf@sys@svg@end@id@scope@code\relax%
