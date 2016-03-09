@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.167 2016/02/19 12:15:56 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.168 2016/03/05 17:59:42 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -122,6 +122,20 @@
   \edef\tikz@temp{{\tikz@dashpattern}{\noexpand\tikz@dashphase}}%
   \expandafter\tikz@addoption\expandafter{\expandafter\pgfsetdash\tikz@temp}%
 }%
+\tikzoption{dash}{\tikz@parse@full@dash#1\pgf@stop}%
+\def\tikz@parse@full@dash#1phase#2\pgf@stop{%
+  \def\tikz@dashphase{#2}%
+  \def\tikz@temp{#1}%
+  \ifx\tikz@temp\pgfutil@empty%
+    \def\tikz@dashpattern{}%
+    \tikz@addoption{\pgfsetdash{}{0pt}}%
+  \else%
+    \def\tikz@dashpattern{}%
+    \expandafter\tikz@scandashon\pgfutil@gobble#1o\@nil%
+    \edef\tikz@temp{{\tikz@dashpattern}{\noexpand\tikz@dashphase}}%
+    \expandafter\tikz@addoption\expandafter{\expandafter\pgfsetdash\tikz@temp}%
+  \fi%
+}
 \def\tikz@dashphase{0pt}
 \def\tikz@dashpattern{}
 
