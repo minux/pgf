@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.29 2016/03/09 22:58:58 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.30 2016/03/10 00:34:56 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -388,8 +388,6 @@
   repeats/.default=,
   repeat/.code=\tikz@anim@add{\pgfanimationset{repeats={#1}}},
   repeat/.default=,
-  add/.code=\tikz@anim@add{\pgfanimationset{add}},
-  replace/.code=\tikz@anim@add{\pgfanimationset{replace}},
   begin/.code=\tikz@anim@add@once{\pgfanimationset{begin={#1}}},
   end/.code=\tikz@anim@add@once{\pgfanimationset{end={#1}}},
   begin on/.code=\tikz@anim@add@once{\pgfanimationset{begin on={#1}}},
