@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.30 2016/03/10 00:34:56 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.31 2016/03/10 09:15:53 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -40,6 +40,11 @@
     #1,%
     /utils/exec=\let\tikz@anim@sync\tikz@anim@last\global\let\tikz@anim@last\tikz@anim@save@last}\pgf@stop\tikz@anim@time@scope},%
   along in/.style={with={time=0}do{value=0},with={time=#1}do{value=1}},
+}
+
+\tikzset{
+  make snapshot of/.code=\edef\tikz@temp{#1}\ifx\tikz@temp\pgfutil@empty\else\pgfsnapshot{#1}\fi,
+  make snapshot after/.code=\edef\tikz@temp{#1}\ifx\tikz@temp\pgfutil@empty\else\pgfsnapshotafter{#1}\fi,
 }
 
 \def\tikz@anim@value#1{%
@@ -392,6 +397,7 @@
   end/.code=\tikz@anim@add@once{\pgfanimationset{end={#1}}},
   begin on/.code=\tikz@anim@add@once{\pgfanimationset{begin on={#1}}},
   end on/.code=\tikz@anim@add@once{\pgfanimationset{end on={#1}}},
+  begin snapshot/.code=\tikz@anim@add{\pgfanimationset{begin snapshot={#1}}},
   origin/.code=\tikz@anim@parse@origin{#1},
   along/.code=\tikz@anim@add@once{\tikz@anim@along{#1}},
   entry control/.code=\tikz@anim@add{\pgfanimationset{entry control=#1}},
