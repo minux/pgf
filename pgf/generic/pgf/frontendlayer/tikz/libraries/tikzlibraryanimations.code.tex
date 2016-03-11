@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.33 2016/03/10 23:26:17 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.34 2016/03/10 23:36:36 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -522,11 +522,11 @@
 \tikzanimationdefineattribute{dash phase}{pgf attribute name=dash,parser=dashoffset}
 \tikzanimationdefineattribute{dash}{parser=dash}
 \tikzanimationdefineattribute{draw opacity}{pgf attribute name=stroke opacity}
-\tikzanimationdefineattribute{draw}{pgf attribute name=stroke, node type=.background.path}
+\tikzanimationdefineattribute{draw}{pgf attribute name=stroke, node type=.background}
 \tikzanimationdefineattribute{drive}{pgf attribute name=motion,code=\pgfanimationset{rotate along=true}}
 \tikzanimationdefineattribute{fill opacity}{}
-\tikzanimationdefineattribute{fill}{node type=.background.path}
-\tikzanimationdefineattribute{line width}{node type=.background.path}
+\tikzanimationdefineattribute{fill}{node type=.background}
+\tikzanimationdefineattribute{line width}{node type=.background}
 \tikzanimationdefineattribute{path}{pgf attribute name=softpath, scope type=.path, node type=.background.path, parser=path}
 \tikzanimationdefineattribute{motion}{}
 \tikzanimationdefineattribute{opacity}{}

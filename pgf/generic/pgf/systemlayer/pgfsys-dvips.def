@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvips.def,v 1.25 2014/07/09 14:01:22 cfeuersaenger Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvips.def,v 1.26 2016/02/23 23:57:03 tantau Exp $
 
 % Driver commands for dvips
 
@@ -30,6 +30,7 @@
 \def\pgfsys@beginpicture{\special{ps: }\special{ps::[begin]}\pgfsys@invoke{pgfo}}
 \def\pgfsys@endpicture{\pgfsys@invoke{pgfc}\special{ps::[end]}}
 \def\pgfsys@hbox#1{%
+  \pgfsys@begin@idscope%
   \pgfsys@invoke{pgfs}%
     \special{ps::[end]}%
       \wd#1=0pt%
@@ -38,6 +39,7 @@
       \box#1
     \special{ps::[begin]}%
   \pgfsys@invoke{pgfr}%
+  \pgfsys@end@idscope%
 }
 \def\pgfsys@begininvisible{%
   \special{ps::[begin]}%

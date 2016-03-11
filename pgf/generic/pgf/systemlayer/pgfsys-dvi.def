@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvi.def,v 1.4 2007/02/05 11:23:22 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-dvi.def,v 1.5 2007/06/07 07:41:11 tantau Exp $
 
 % Driver commands for pure, ultra-portable dvi, in the tradition of
 % old-style LaTeX pictures.
@@ -164,10 +164,12 @@
 
 % Text:
 \def\pgfsys@hbox#1{%
+  \pgfsys@begin@idscope%
   \wd#1=0pt%
   \ht#1=0pt%
   \dp#1=0pt%
   \pgf@sys@dvi@put{\pgf@sys@dvi@pt@x}{\pgf@sys@dvi@pt@y}{\box#1}%
+  \pgfsys@end@idscope%
 }
 
 

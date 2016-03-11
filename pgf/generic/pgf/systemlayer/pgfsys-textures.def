@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-textures.def,v 1.5 2007/12/12 16:57:17 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-textures.def,v 1.6 2011/05/13 10:16:37 tantau Exp $
 
 
 % Driver commands for textures driver
@@ -36,12 +36,14 @@
       \special{rawpostscript pgfbeginpicture}}
 \def\pgfsys@endpicture{\special{rawpostscript restore}}
 \def\pgfsys@hbox#1{%
+  \pgfsys@begin@idscope%
   \pgfsys@invoke{save pgfbeginhbox}%
     \wd#1=0pt%
     \ht#1=0pt%
     \dp#1=0pt%
     \box#1%
   \pgfsys@invoke{restore}%
+  \pgfsys@end@idscope%
 }
 \def\pgfsys@begininvisible{%
   \special{rawpostscript gsave nulldevice}%
