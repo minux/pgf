@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.82 2016/03/09 22:58:58 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.83 2016/03/11 14:04:04 tantau Exp $
 
 
 % Load key mechanism
@@ -566,6 +566,8 @@
 
 \def\pgfsys@begin@idscope{%
   \begingroup%
+    \csname pgf@sys@att@setup@\pgfsys@id@refcurrent\endcsname%
+    \expandafter\global\expandafter\let\csname pgf@sys@att@setup@\pgfsys@id@refcurrent\endcsname\relax%
     \csname pgf@sys@att@beg@\pgfsys@id@refcurrent\endcsname%
     \expandafter\global\expandafter\let\csname pgf@sys@att@beg@\pgfsys@id@refcurrent\endcsname\relax%
     \pgfsys@invalidate@currentid%
@@ -1082,7 +1084,6 @@
 
 \def\pgfsys@stay@text{{stay}{0}}
 \def\pgfsys@jump@text{{jump}{1}}
-
 
 \def\pgfsys@animation@offset#1#2{}
 % #1 must be a value in seconds, #2 is the target "begin" or "end" to
