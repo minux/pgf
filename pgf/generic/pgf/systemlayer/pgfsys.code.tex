@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.84 2016/03/12 09:51:22 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.85 2016/03/13 19:43:47 tantau Exp $
 
 
 % Load key mechanism
@@ -903,6 +903,11 @@
 % Animations
 %
 % 
+
+
+\newif\ifpgfsysanimationsupported
+% Will be set to true by a driver when animations are supported. Note
+% that snapshots are always supported.
 
 
 \def\pgfsys@animate#1{\pgf@sys@fail{animations}}
