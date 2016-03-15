@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcorearrows.code.tex,v 1.42 2015/05/08 10:23:50 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcorearrows.code.tex,v 1.43 2015/05/14 14:43:05 cfeuersaenger Exp $
 
 
 
@@ -658,6 +658,7 @@
   \expandafter\global\expandafter\let\csname\pgf@arrow@fullname{#1}\endcsname\pgf@arrow@id@count%
   \global\let\pgf@arrow@id\pgf@arrow@id@count%
   {%
+    \pgfclearid%
     \csname pgf@ar@setup@#1\endcsname%
     % Handle reversal
     \ifpgfarrowreversed%

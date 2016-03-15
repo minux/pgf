@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.63 2016/03/13 19:43:47 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.64 2016/03/14 10:57:00 tantau Exp $
 
 
 % Driver commands for svg
@@ -70,7 +70,7 @@
   \else%
     \pgfsysprotocol@literal{<path\pgfsys@if@fresh@currentid{ id="\pgfsys@id@refcurrent"}{}  d="}%
     \pgf@sys@flushsvgpath%
-    \pgfsysprotocol@literal{" #1/>\noexpand\pgfsys@svg@newline }
+    \pgfsysprotocol@literal{" #1/>\pgfsys@svg@newline }%
   \fi%
   \pgfsys@invalidate@currentid%
 }
