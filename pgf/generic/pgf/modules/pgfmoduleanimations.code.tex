@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.34 2016/03/13 19:43:47 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.35 2016/03/14 10:56:59 tantau Exp $
 
 
 % We need the animation system abstraction:
@@ -503,11 +503,16 @@
   of/.code={%
     \pgf@anim@decomp{#1}%
     \pgfidrefprevuse\pgf@anim@id\pgf@anim@id@name%
+    \ifx\pgf@anim@id\pgfutil@empty%
+      \pgferror{Unknown object/node name '\pgf@anim@id@name'. Did you
+        mean 'of next=\pgf@anim@id@name'?}%
+    \fi%
   },
   of next/.code={%
     \pgf@anim@decomp{#1}%
     \pgfidrefnextuse\pgf@anim@id\pgf@anim@id@name%
   },
+  of id/.code=\def\pgf@anim@id{#1},
   key/.store in=\pgfanim@event@key,
   repeat/.code=\pgfmathparse{#1}\let\pgfanim@event@repeat\pgfmathresult,
   delay/.code=\pgfparsetime{#1}\let\pgfanim@event@delay\pgftimeresult,
