@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.25 2015/11/26 22:22:28 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/basiclayer/pgfcoretransformations.code.tex,v 1.26 2016/01/02 09:34:05 cfeuersaenger Exp $
 
 
 % Position transformations
@@ -132,7 +132,7 @@
   \else%
     \pgf@pt@temp=\pgf@x%
     \global\pgf@x=\pgf@pt@aa\pgf@x%
-    \advance\pgf@x by\pgf@pt@ba\pgf@y%
+    \global\advance\pgf@x by\pgf@pt@ba\pgf@y%
     \global\pgf@y=\pgf@pt@bb\pgf@y%
     \global\advance\pgf@y by\pgf@pt@ab\pgf@pt@temp%
   \fi%
