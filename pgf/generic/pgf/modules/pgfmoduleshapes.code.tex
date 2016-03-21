@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleshapes.code.tex,v 1.40 2016/01/02 09:34:05 cfeuersaenger Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleshapes.code.tex,v 1.41 2016/03/18 01:36:37 tantau Exp $
 
 
 
@@ -41,6 +41,9 @@
   {\pgferror{Unknown shape ``#1''}}%
   {%
     {%
+      \ifpgflatenodepositioning%
+        \pgfsys@beginscope%
+      \fi%
       \pgf@outer@adjust@hook%
       \let\pgf@sh@savedmacros=\pgfutil@empty% MW
       \let\pgf@sh@savedpoints=\pgfutil@empty%
@@ -105,6 +108,7 @@
       {{\pgfusetype{.before foreground}\pgfidscope\pgfscope\csname pgf@sh@ffg@#1\endcsname\endpgfscope\endpgfidscope}}%
       \ifpgflatenodepositioning%
         \pgf@shapes@late@pos@end%
+        \pgfsys@endscope%
       \else%
         \expandafter\pgf@nodecallback\expandafter{\pgf@node@name}%
       \fi%
