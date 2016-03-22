@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.170 2016/03/11 14:04:04 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.171 2016/03/21 20:03:53 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -3781,6 +3781,7 @@
     }%
     \setbox\pgfnodeparttextbox=\hbox%
       \bgroup%
+        \pgfinterruptpicture%
         \pgfscope%
           \pgfsys@text@to@black@hook%
           \tikzset{every text node part/.try}%
@@ -3789,7 +3790,6 @@
             \pgfsetfillopacity{\tikz@textopacity}%
             \pgfsetstrokeopacity{\tikz@textopacity}%
           \fi%
-        \pgfinterruptpicture%
           \ifx\tikz@text@width\pgfutil@empty%
             \tikz@textfont%  
           \else%
@@ -3831,8 +3831,8 @@
               \pgfutil@endminipage%
             \endgroup%
           \fi%
-        \endpgfinterruptpicture%
         \endpgfscope%
+        \endpgfinterruptpicture%
       \egroup%
     \pgfutil@ifnextchar c{\tikz@fig@mustbenamed\tikz@fig@continue}%
     {\pgfutil@ifnextchar[{\tikz@fig@mustbenamed\tikz@fig@continue}%
