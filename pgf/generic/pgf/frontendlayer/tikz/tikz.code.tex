@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.173 2016/03/22 13:59:54 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.174 2016/03/22 14:09:22 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -3990,7 +3990,7 @@
                     \pgfsetfillcolor{.}%
                     \pgfusetype{.text}%
                     \pgfidscope%
-                      \unhbox\pgfnodeparttextbox%
+                      \box\pgfnodeparttextbox%
                     \endpgfidscope%
                     \endpgfscope%
                   }}%
