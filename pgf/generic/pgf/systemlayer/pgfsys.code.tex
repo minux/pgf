@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.86 2016/03/14 10:57:00 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.87 2016/03/22 12:57:26 tantau Exp $
 
 
 % Load key mechanism
@@ -589,6 +589,7 @@
   \pgfsys@beginscope%
   \pgfsys@beg@save%
   \expandafter\global\expandafter\let\csname pgf@sys@att@beg@\pgfsys@id@refcurrent\endcsname\relax%
+  \expandafter\global\expandafter\let\csname pgf@sys@att@end@\pgfsys@id@refcurrent\endcsname\relax%
 }
 
 \def\pgfsys@end@idscope{
@@ -607,7 +608,6 @@
 
 \def\pgfsys@call@end{%
   \pgfsys@end@save%
-  \expandafter\global\expandafter\let\csname pgf@sys@att@end@\pgfsys@id@refcurrent\endcsname\relax%
   \pgfsys@endscope%
 }
 
