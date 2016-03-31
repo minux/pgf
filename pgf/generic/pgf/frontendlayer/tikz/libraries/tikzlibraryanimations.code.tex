@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.40 2016/03/16 23:32:38 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.41 2016/03/18 01:36:37 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -75,7 +75,10 @@
   \def\tikz@anim@result{#1}
   \ifx\tikz@anim@result\pgf@special@current@text%
   \else%
-    \tikz@animation@parser{#1}%
+    \ifx\tikz@animation@parser\relax%
+    \else%
+      \tikz@animation@parser{#1}%
+    \fi%
   \fi%
 }
 
