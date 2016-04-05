@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.88 2016/03/22 13:21:31 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.89 2016/03/31 17:20:46 tantau Exp $
 
 
 % Load key mechanism
@@ -646,7 +646,7 @@
 
 \def\pgfsys@use@type#1{%
   \edef\pgfsys@current@type{#1}%
-  \pgfsys@register@type{#1}%
+  \pgfsys@register@type\pgfsys@current@type%
 }
 \let\pgfsys@current@type\pgfutil@empty
 % Sets the type to be used for the next graphic object. 
