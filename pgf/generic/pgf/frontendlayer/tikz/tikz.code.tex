@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.177 2016/04/27 22:53:01 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/tikz.code.tex,v 1.178 2016/04/29 19:06:23 tantau Exp $
 
 
 \def\tikzerror#1{\pgfutil@packageerror{tikz}{#1}{}}
@@ -3860,9 +3860,13 @@
           \tikz@atbegin@node%
           \bgroup%
             \aftergroup\unskip%
-            % Color stuff has been moved from here to outside; this is
+            % Some color stuff has been moved from here to outside; this is
             % necessary for support of dvisvgm and of animation
             % snapshots.
+            \ifx\tikz@textcolor\pgfutil@empty%
+            \else%
+              \pgfutil@colorlet{.}{\tikz@textcolor}%
+            \fi%
             \setbox\tikz@figbox=\box\pgfutil@voidb@x%
             \setbox\tikz@figbox@bg=\box\pgfutil@voidb@x%
             \tikz@uninstallcommands%
