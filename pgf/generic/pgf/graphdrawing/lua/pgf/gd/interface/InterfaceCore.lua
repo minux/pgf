@@ -7,7 +7,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more information
 
--- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceCore.lua,v 1.5 2013/03/07 18:17:14 tantau Exp $
+-- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceCore.lua,v 1.6 2014/02/24 10:40:32 tantau Exp $
 
 
 
@@ -117,6 +117,13 @@ local factors = {
   [""]=1,
 }
 
+local time_factors = {
+  s=1,
+  ms=0.001,
+  min=60,
+  h=3600
+}
+
 local directions = {
   down = -90,
   up = 90,
@@ -157,6 +164,9 @@ function InterfaceCore.convert(s,t)
   elseif t == "length" then
     local num, dim = string.match(s, "([%d.]+)(.*)")
     return tonumber(num) * assert(factors[dim], "unknown unit")
+  elseif t == "time" then
+    local num, dim = string.match(s, "([%d.]+)(.*)")
+    return tonumber(num) * assert(time_factors[dim], "unknown time unit")
   elseif t == "string" then
     return s
   elseif t == "canvas coordinate" or t == "coordinate" then
