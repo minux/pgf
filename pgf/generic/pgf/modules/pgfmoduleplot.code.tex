@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleplot.code.tex,v 1.12 2013/07/31 16:22:24 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleplot.code.tex,v 1.13 2015/08/03 07:57:07 cfeuersaenger Exp $
 
 
 % PGF's plotting interface works as follows:
@@ -503,7 +503,7 @@
     \immediate\pgfutil@write\pgf@plotwrite{\pgf@gnuplot@head}%
     \immediate\pgfutil@write\pgf@plotwrite{#2}%
     \immediate\closeout\pgf@plotwrite%
-    \immediate\pgfutil@write18{%
+    \pgfutil@shellescape{%
       \pgfkeysvalueof{/pgf/plot/gnuplot call} \pgf@plotgnuplotfile}%
   \fi%
 %  \let\pgf@savedparsexyline=\pgf@parsexyline%
