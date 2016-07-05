@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.38 2016/06/23 18:55:02 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.39 2016/06/23 22:14:38 tantau Exp $
 
 
 % We need the animation system abstraction:
@@ -793,6 +793,7 @@
       \pgferror{You must specify shorten < prior to the path entries}%
     \else%
       \pgfmathsetmacro\pgf@anim@marker@extra@shorten@start{#1}%
+      \edef\pgf@anim@marker@extra@shorten@start{\pgf@anim@marker@extra@shorten@start pt}%
     \fi%
   },
   shorten >/.code={%
@@ -800,6 +801,7 @@
       \pgferror{You must specify shorten < prior to the path entries}%
     \else%
       \pgfmathsetmacro\pgf@anim@marker@extra@shorten@end{#1}%
+      \edef\pgf@anim@marker@extra@shorten@end{\pgf@anim@marker@extra@shorten@end pt}%
     \fi%
   }
 }
@@ -884,11 +886,11 @@
     #1%
   }%
   \expandafter\let\expandafter#2\csname pgfanim@marker@cache@\pgf@anim@marker@id@list\endcsname%
-  \expandafter\let\expandafter#3\csname pgfanim@marker@cache@l\pgf@anim@marker@id@list\endcsname%
+  \expandafter\let\expandafter#3\csname pgfanim@marker@cachel@\pgf@anim@marker@id@list\endcsname%
   \ifx#2\relax% ok, have to create it!
     \pgf@relevantforpicturesizefalse%
     \pgfinterruptpath%
-      \pgf@arrow@compute@shortening#1%
+      \pgf@arrow@compute@shortening{#1}%
       \xdef#3{\the\pgf@xa}%
       {%
         \let\pgf@arrow@handle\pgf@anim@drawer@marker
