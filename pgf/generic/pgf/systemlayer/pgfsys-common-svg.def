@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.72 2016/06/23 18:55:02 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-common-svg.def,v 1.73 2016/06/23 19:43:41 tantau Exp $
 
 
 % Driver commands for svg
@@ -1463,10 +1463,10 @@
 \def\pgfsys@marker@declare@{%
   \pgfsysprotocol@setcurrentprotocol\pgfutil@empty%
   \pgfsys@beginscope@{ id="pgfs\the\pgf@sys@id@count"}%
-  \pgfsysprotocol@literal{\csname pgf@sys@marker@prot@\the\pgf@sys@id@count\endcsname}
+  \pgfsysprotocol@literal{\csname pgf@sys@marker@prot@\the\pgf@sys@id@count\endcsname}%
   \pgfsys@endscope%
   \pgfsysprotocol@getcurrentprotocol\pgfsys@temp%
-  \pgf@sys@svg@make@defs{pgfs\the\pgf@sys@id@count}{\pgfsys@temp}
+  \pgf@sys@svg@make@defs{pgfs\the\pgf@sys@id@count}{\pgfsys@temp}%
 }
 
 \def\pgfsys@marker@use#1{%

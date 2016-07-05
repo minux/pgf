@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.43 2016/04/25 14:58:37 tantau Exp $
+\ProvidesFileRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex,v 1.44 2016/06/23 22:14:38 tantau Exp $
 
 \usepgfmodule{animations}
 
@@ -183,10 +183,17 @@
 
 \def\tikz@animation@value@parser"#1"{%
   \def\tikz@animation@value@head{#1}%
-  \pgfutil@ifnextchar\pgf@stop{\tikz@animation@value@rest=}{\tikz@animation@value@rest}%
+  \pgfutil@ifnextchar\pgf@stop{\tikz@animation@value@rest=}{%
+    \pgfutil@ifnextchar b\tikz@animation@value@rest@base\tikz@animation@value@rest%
+  }%
 }
 \def\tikz@animation@value@rest=#1\pgf@stop{%
   \tikz@anim@sync@scope{#1}{\expandafter\tikz@anim@add\expandafter{\expandafter\tikz@anim@value\expandafter{\tikz@animation@value@head}}}{\tikz@anim@make@entry}%
+}
+
+\def\tikz@animation@value@rest@base base{%
+  \tikz@anim@sync@scope{}{/utils/exec=\let\tikz@animation@time\tikz@anim@base@text\expandafter\tikz@anim@add\expandafter{\expandafter\tikz@anim@value\expandafter{\tikz@animation@value@head}}}{\tikz@anim@make@entry}%
+  \pgfutil@ifnextchar\pgf@stop{\tikz@animation@value@rest=}{\tikz@animation@value@rest}%
 }
 
 

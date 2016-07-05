@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.93 2016/06/21 20:54:26 tantau Exp $
+\ProvidesPackageRCS[v\pgfversion] $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys.code.tex,v 1.94 2016/06/23 18:55:02 tantau Exp $
 
 
 % Load key mechanism
@@ -322,7 +322,6 @@
 \def\pgfsys@closestroke{\pgfsys@closepath\pgfsys@stroke}
 % This command should have the same effect as first closing the path
 % and then stroking it.
-
 
 
 
@@ -1268,10 +1267,13 @@
 
 \def\pgfsys@marker@declare#1#2{%
   {%
+    \pgfpicturetrue%
     \pgfsysprotocol@getcurrentprotocol\pgfsys@marker@temp%
     \pgfsysprotocol@setcurrentprotocol\pgfutil@empty%
     \pgfsysprotocol@bufferedtrue%
+    \pgfsys@beginscope%
     #2%
+    \pgfsys@endscope%
     \xdef#1{\the\pgf@sys@id@count}%
     \expandafter\expandafter\expandafter\global\expandafter\pgfsysprotocol@getcurrentprotocol\csname pgf@sys@marker@prot@#1\endcsname%
     \pgfsys@marker@declare@% curtesy hook  
@@ -1628,6 +1630,7 @@
 \def\pgfsys@defobject#1#2#3#4{%
   \pgfsysprotocol@getcurrentprotocol\pgfsys@temp%
   {%
+    \pgfpicturetrue%
     \pgfsysprotocol@setcurrentprotocol\pgfutil@empty%
     \pgfsysprotocol@bufferedtrue%
     \pgfsys@beginscope%
