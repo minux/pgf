@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-tex4ht.def,v 1.24 2013/08/05 18:22:47 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/systemlayer/pgfsys-tex4ht.def,v 1.25 2013/08/06 17:46:08 tantau Exp $
 
 
 
@@ -91,7 +91,8 @@
 % we don't want tex4ht putting <p> and </p> tags automatically in our svg code and causing invalid xhtml in our svg pictures
 \newif\ifpgfsys@CssIncluded@\pgfsys@CssIncluded@false
 \def\pgfsys@beginpicture{% 
-  \EndP\HtmlParOff
+  \pgfsys@svg@boxmodefalse%
+  \EndP\HtmlParOff%
   \pgfkeys{/pgf/tex4ht node/escape=false}%
   % text only nodes are the default. Advantage : pure svg pictures are
   % the default, nicer for text only nodes.  

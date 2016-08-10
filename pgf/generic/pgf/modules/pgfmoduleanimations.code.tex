@@ -7,7 +7,7 @@
 %
 % See the file doc/generic/pgf/licenses/LICENSE for more details.
 
-\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.40 2016/07/05 22:13:16 tantau Exp $
+\ProvidesFileRCS $Header: /cvsroot/pgf/pgf/generic/pgf/modules/pgfmoduleanimations.code.tex,v 1.41 2016/07/16 17:17:33 tantau Exp $
 
 
 % We need the animation system abstraction:
@@ -140,6 +140,7 @@
   line width/.code=\pgf@animate@attr{linewidth}{dimension},
   fill/.code=\pgf@animate@attr{fillcolor}{color},
   draw/.code=\pgf@animate@attr{strokecolor}{color},
+  color/.code=\pgf@animate@attr{color}{color},
   stroke/.style=draw,
   motion/.code=\pgf@animate@attr{motion}{scalar},
   translate/.code=\pgf@animate@attr{translate}{point},

@@ -7,7 +7,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more information
 
--- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Vertex.lua,v 1.7 2015/10/26 20:57:12 tantau Exp $
+-- @release $Header: /cvsroot/pgf/pgf/generic/pgf/graphdrawing/lua/pgf/gd/model/Vertex.lua,v 1.8 2016/06/06 19:43:45 tantau Exp $
 
 
 --- 
@@ -22,7 +22,7 @@
 -- be modified directly.
 --
 -- Note that a |Vertex| is an abstraction of \tikzname\ nodes; indeed
--- that objective is to ensure that, in principle, we can use them
+-- the objective is to ensure that, in principle, we can use them
 -- independently of \TeX. For this reason, you will not find any
 -- references to |tex| inside a |Vertex|; this information is only
 -- available in the syntactic digraph.
