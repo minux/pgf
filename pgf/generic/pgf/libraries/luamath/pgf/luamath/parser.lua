@@ -8,7 +8,7 @@
 --
 -- See the file doc/generic/pgf/licenses/LICENSE for more details.
 --
--- $Id: parser.lua,v 1.2 2015/09/06 15:24:48 cfeuersaenger Exp $	
+-- $Id: parser.lua,v 1.3 2015/11/28 17:20:49 cfeuersaenger Exp $	
 --
 -- usage:
 --
@@ -142,6 +142,9 @@ local prefix_operator_pattern = (prefix_operator * space_pattern * Cg(Prefix) ) 
 -- apparently, we need to distinghuish between <expr> ! and  <expr> != <expr2>:
 local postfix_operator = C( S"r!" - P"!=" )  + C(P"^") * space_pattern * pow_exponent
 
+pgfluamathfunctions.functionMustBeEvaluatedInTeX = function()
+	error("The function in this context cannot be evaluated by LUA because it depends on TeX macros.")
+end
 
 local ternary_eval = pgfluamathfunctions.ifthenelse
 
